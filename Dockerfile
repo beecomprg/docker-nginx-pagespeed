@@ -18,7 +18,7 @@ COPY ./bin/download_pagespeed.sh /app/bin/download_pagespeed.sh
 RUN chmod 750 /app/bin/*.sh && \
 	useradd -r -s /usr/sbin/nologin nginx && mkdir -p /var/log/nginx /var/cache/nginx && \
 	apt-get update && \
-	apt-get -y --no-install-recommends install unzip wget git-core autoconf automake libtool build-essential zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev uuid-dev && \
+	apt-get -y --no-install-recommends install curl unzip wget git-core autoconf automake libtool build-essential zlib1g-dev libpcre3-dev libxslt1-dev libxml2-dev libgd2-xpm-dev libgeoip-dev libgoogle-perftools-dev libperl-dev uuid-dev && \
 	/app/bin/download_pagespeed.sh && \
 	echo "Downloading openssl v${OPENSSL_VERSION} from https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz ..." && \
 	wget -O - https://www.openssl.org/source/openssl-${OPENSSL_VERSION}.tar.gz  --progress=bar --tries=3 --no-check-certificate | tar xzf  - -C /tmp && \
